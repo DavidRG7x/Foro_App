@@ -1,0 +1,51 @@
+body {
+    min-height: 100vh;
+    background-color: #121619; 
+    color: #f8f9fa; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-container {
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-box {
+    background-color: #1f2d3d;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 173, 238, 0.2);
+    max-width: 360px;
+    width: 100%;
+    padding: 20px;
+}
+
+.icon-login {
+    font-size: 3rem; /* más pequeño que antes */
+    color: #0dcaf0;
+}
+
+.input-container {
+    max-width: 300px;
+    width: 100%;
+}
+
+.login-input {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+}
+
+.login-title {
+    font-size: 1.4rem;
+}
+
+.login-subtitle {
+    font-size: 0.9rem;
+    color: #ced4da;
+}
+
+.login-btn {
+    font-size: 0.95rem;
+    padding: 6px 20px;
+}
