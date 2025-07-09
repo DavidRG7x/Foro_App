@@ -43,7 +43,7 @@ public class PublicarTemaServlet extends HttpServlet {
             boolean guardado = dao.guardarTema(tema);
 
             if (guardado) {
-                response.sendRedirect("foro.jsp");
+                response.sendRedirect("foro");
             } else {
                 request.setAttribute("error", "No se pudo publicar el tema.");
                 request.getRequestDispatcher("nuevoTema.jsp").forward(request, response);

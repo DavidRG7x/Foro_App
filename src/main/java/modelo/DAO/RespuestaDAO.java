@@ -84,5 +84,21 @@ public class RespuestaDAO {
             ps.executeUpdate();
         }
     }
+    
+    public int contarRespuestasPorUsuario(int idUsuario) throws SQLException, ClassNotFoundException {
+        int total = 0;
+        String sql = "SELECT COUNT(*) FROM respuestas WHERE id_usuario = ?";
+        try (Connection con = Conexionbd.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idUsuario);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    total = rs.getInt(1);
+                }
+            }
+        }
+        return total;
+    }
 
 }

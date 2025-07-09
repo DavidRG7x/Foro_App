@@ -59,10 +59,10 @@
                     Hola, <strong><%= usuario.getUsuario() %></strong>
                 </span>
 
-                <a href="perfil.jsp" class="btn btn-sm btn-outline-light me-2" title="Ver perfil">
+                <a href="${pageContext.request.contextPath}/perfil" class="btn btn-sm btn-outline-light me-2" title="Ver perfil">
                     <i class="bi bi-person-circle"></i>
                 </a>
-
+   
                 <a href="logout.jsp" class="btn btn-sm btn-outline-light" title="Cerrar sesión">
                     <i class="bi bi-box-arrow-right"></i>
                 </a>

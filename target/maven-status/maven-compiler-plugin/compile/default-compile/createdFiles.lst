@@ -1,6 +1,9 @@
+controlador\EliminarTemaServlet.class
 controlador\RegistroServlet.class
 com\foroapp\foroapp\resources\JakartaEE8Resource.class
+controlador\EditarTemaServlet.class
 modelo\DTO\Comentario.class
+controlador\PerfilServlet.class
 controlador\ForoServlet.class
 controlador\PublicarTemaServlet.class
 modelo\DAO\RespuestaDAO.class

@@ -8,7 +8,6 @@
 <%
     List<Tema> lista = (List<Tema>) request.getAttribute("listaTemas");
 
-    // Formato amigable sin hora
     SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
     sdf.setTimeZone(TimeZone.getTimeZone("America/Guayaquil"));
 %>
@@ -27,7 +26,7 @@
     </div>
 
     <div class="table-responsive rounded shadow-sm">
-        <table class="table table-dark table-hover align-middle text-light">
+        <table class="table table-dark table-hover align-middle">
             <thead class="table-info text-dark">
                 <tr>
                     <th>Asunto / Iniciado por</th>
@@ -52,13 +51,15 @@
                         <small>Iniciado por <span class="text-info"><%= tema.getNombreUsuario() %></span></small>
                     </td>
                     <td class="text-center">
-                        <span>0</span> / <span>0</span>
+                        <span><%= tema.getNumRespuestas() != null ? tema.getNumRespuestas() : 0 %></span>
+                        /
+                        <span><%= tema.getNumVistas() != null ? tema.getNumVistas() : 0 %></span>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
                             <img src="img/avatar_default.png" class="rounded-circle me-2" width="32" height="32" alt="avatar">
                             <div>
-                                <small><%= fechaTema %></small><br>
+                                <small class="text-light"><%= fechaTema %></small><br>
                                 <small class="text-info"><%= tema.getNombreUsuario() %></small>
                             </div>
                         </div>
@@ -67,7 +68,7 @@
                 <%   }
                    } else { %>
                 <tr>
-                    <td colspan="3" class="text-center">No hay temas para mostrar.</td>
+                    <td colspan="3" class="text-center text-light">No hay temas para mostrar.</td>
                 </tr>
                 <% } %>
             </tbody>

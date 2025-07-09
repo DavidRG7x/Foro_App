@@ -1,7 +1,9 @@
 package controlador;
 
 import modelo.DAO.TemaDAO;
+import modelo.DAO.RespuestaDAO;
 import modelo.DTO.Tema;
+import modelo.DTO.Respuesta;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +11,6 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import modelo.DAO.RespuestaDAO;
-import modelo.DTO.Respuesta;
 
 @WebServlet("/verTema")
 public class VerTemaServlet extends HttpServlet {
@@ -30,12 +30,16 @@ public class VerTemaServlet extends HttpServlet {
 
         String idTemaStr = request.getParameter("id");
         if (idTemaStr == null || idTemaStr.isEmpty()) {
-            response.sendRedirect("foro"); // Redirigir a la lista si no hay id
+            response.sendRedirect("foro");
             return;
         }
 
         try {
             int idTema = Integer.parseInt(idTemaStr);
+
+            // ✅ INCREMENTAR VISTAS ANTES DE OBTENERLO
+            temaDAO.incrementarVistas(idTema);
+
             Tema tema = temaDAO.obtenerTemaPorId(idTema);
 
             if (tema == null) {
@@ -44,11 +48,10 @@ public class VerTemaServlet extends HttpServlet {
                 return;
             }
 
-            // 🔴 AQUÍ: cargar respuestas desde DAO
             List<Respuesta> respuestas = respuestaDAO.listarRespuestasPorTema(idTema);
 
             request.setAttribute("tema", tema);
-            request.setAttribute("listaRespuestas", respuestas); // 🔥 Esto es necesario para que verTema.jsp funcione
+            request.setAttribute("listaRespuestas", respuestas);
 
             request.getRequestDispatcher("verTema.jsp").forward(request, response);
 
@@ -59,4 +62,3 @@ public class VerTemaServlet extends HttpServlet {
         }
     }
 }
-

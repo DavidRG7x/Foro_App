@@ -8,14 +8,34 @@ public class Tema {
     private String contenido;
     private Timestamp fechaPublicacion;
     private int idUsuario;
-    private String nombreUsuario; // Para mostrar el nombre del usuario en el foro
+    private String nombreUsuario; 
+    private Integer numVistas;
+    private Integer numRespuestas;
+
 
     // Getters y setters
+    
+    public Integer getNumRespuestas() {
+        return numRespuestas;
+    }
 
+    public void setNumRespuestas(Integer numRespuestas) {
+        this.numRespuestas = numRespuestas;
+    }
+
+    public Integer getNumVistas() {
+        return numVistas;
+    }
+
+    public void setNumVistas(Integer numVistas) {
+        this.numVistas = numVistas;
+    }
+    
     public int getId() {
         return id;
     }
 
+    
     public void setId(int id) {
         this.id = id;
     }

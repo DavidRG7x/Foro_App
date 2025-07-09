@@ -34,7 +34,7 @@
 
         <div class="text-center mt-4">
             <a href="${pageContext.request.contextPath}/registro.jsp" class="btn btn-info me-2">Crear Cuenta</a>
-            <a href="${pageContext.request.contextPath}/foro.jsp" class="btn btn-outline-info">Explorar Foro</a>
+            <a href="${pageContext.request.contextPath}/foro" class="btn btn-outline-info">Explorar Foro</a>
         </div>
 
     </div>

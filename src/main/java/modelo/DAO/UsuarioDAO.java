@@ -2,9 +2,11 @@ package modelo.DAO;
 
 import modelo.conexion.Conexionbd;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import modelo.DTO.Usuario;
 
 public class UsuarioDAO {
@@ -67,6 +69,22 @@ public class UsuarioDAO {
             return rs.next(); // Si hay resultados, el nombre de usuario ya existe
         }
 }
+    public Date obtenerFechaRegistro(int idUsuario) throws SQLException, ClassNotFoundException {
+        Date fecha = null;
+        String sql = "SELECT fecha_registro FROM usuarios WHERE id = ?";
+        try (Connection con = Conexionbd.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idUsuario);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    fecha = rs.getTimestamp("fecha_registro");
+                }
+            }
+        }
+        return fecha;
+    }
+
 
 
 }

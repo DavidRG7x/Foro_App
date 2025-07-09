@@ -2,6 +2,8 @@ C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\Publ
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\EliminarRespuestaServlet.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\com\foroapp\foroapp\JakartaRestConfiguration.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\PublicarRespuestaServlet.java
+C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\EliminarTemaServlet.java
+C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\PerfilServlet.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\VerTemaServlet.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\modelo\conexion\Conexionbd.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\modelo\DTO\Usuario.java
@@ -14,5 +16,6 @@ C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\Foro
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\modelo\DAO\TemaDAO.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\EditarRespuestaServlet.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\modelo\DTO\Tema.java
+C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\EditarTemaServlet.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\controlador\RegistroServlet.java
 C:\Users\GAMER\Documents\NetBeansProjects\ForoApp\src\main\java\modelo\DAO\UsuarioDAO.java
