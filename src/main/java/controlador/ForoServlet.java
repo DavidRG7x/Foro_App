@@ -12,14 +12,27 @@ import java.util.List;
 
 @WebServlet("/foro")
 public class ForoServlet extends HttpServlet {
+    private TemaDAO temaDAO;
+
+    @Override
+    public void init() {
+        temaDAO = new TemaDAO();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        String busqueda = request.getParameter("busqueda");
 
         try {
-            TemaDAO dao = new TemaDAO();
-            List<Tema> listaTemas = dao.listarTemas();
+            List<Tema> listaTemas;
+            if (busqueda != null && !busqueda.trim().isEmpty()) {
+                listaTemas = temaDAO.buscarTemas(busqueda.trim());
+            } else {
+                listaTemas = temaDAO.listarTemas();
+            }
             request.setAttribute("listaTemas", listaTemas);
             request.getRequestDispatcher("foro.jsp").forward(request, response);
 

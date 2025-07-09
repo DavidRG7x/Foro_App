@@ -57,8 +57,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="img/avatar_default.png" class="rounded-circle me-2" width="32" height="32" alt="avatar">
-                            <div>
+                            <i class="bi bi-person-circle text-info me-2" style="font-size: 32px;"></i>                            <div>
                                 <small class="text-light"><%= fechaTema %></small><br>
                                 <small class="text-info"><%= tema.getNombreUsuario() %></small>
                             </div>

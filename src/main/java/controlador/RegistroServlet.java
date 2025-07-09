@@ -2,14 +2,11 @@ package controlador;
 
 import modelo.DAO.UsuarioDAO;
 import modelo.DTO.Usuario;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 @WebServlet("/registrar")
 public class RegistroServlet extends HttpServlet {
@@ -17,8 +14,9 @@ public class RegistroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
 
-        // Obtener datos del formulario
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String usuario = request.getParameter("usuario");
@@ -26,7 +24,6 @@ public class RegistroServlet extends HttpServlet {
         String clave = request.getParameter("clave");
         String confirmarClave = request.getParameter("confirmarClave");
 
-        // Validar claves
         if (!clave.equals(confirmarClave)) {
             request.setAttribute("error", "Las contraseñas no coinciden.");
             request.getRequestDispatcher("registro.jsp").forward(request, response);
@@ -36,29 +33,25 @@ public class RegistroServlet extends HttpServlet {
         UsuarioDAO dao = new UsuarioDAO();
 
         try {
-            // Verificar si el correo ya existe
             if (dao.correoExiste(correo)) {
                 request.setAttribute("error", "El correo ya está registrado.");
                 request.getRequestDispatcher("registro.jsp").forward(request, response);
                 return;
             }
 
-            // Verificar si el nombre de usuario ya existe
             if (dao.usuarioExiste(usuario)) {
                 request.setAttribute("error", "El nombre de usuario ya está en uso.");
                 request.getRequestDispatcher("registro.jsp").forward(request, response);
                 return;
             }
 
-            // Crear objeto Usuario
             Usuario nuevo = new Usuario();
             nuevo.setNombre(nombre);
             nuevo.setApellido(apellido);
             nuevo.setUsuario(usuario);
             nuevo.setCorreo(correo);
-            nuevo.setClave(clave); // en producción debería cifrarse
+            nuevo.setClave(clave); // Se encripta en DAO
 
-            // Registrar en BD
             boolean exito = dao.registrarUsuario(nuevo);
 
             if (exito) {
@@ -74,6 +67,5 @@ public class RegistroServlet extends HttpServlet {
             request.setAttribute("error", "Error al registrar usuario: " + e.getMessage());
             request.getRequestDispatcher("registro.jsp").forward(request, response);
         }
-        
     }
 }

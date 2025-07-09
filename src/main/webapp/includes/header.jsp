@@ -46,9 +46,11 @@
                 </li>
             </ul>
 
-            <form class="d-flex me-3 search-form" role="search" action="${pageContext.request.contextPath}/ForoController" method="GET">
+            <!-- ? Búsqueda apunta al Servlet correcto -->
+            <form class="d-flex me-3 search-form" role="search" action="${pageContext.request.contextPath}/foro" method="GET">
                 <input type="search" name="busqueda" class="form-control search-input me-2" 
-                       placeholder="Buscar temas..." aria-label="Buscar" />
+                       placeholder="Buscar temas..." aria-label="Buscar"
+                       value="<%= request.getAttribute("busqueda") != null ? request.getAttribute("busqueda") : "" %>" />
                 <button type="submit" class="btn btn-info search-btn" title="Buscar">
                     <i class="bi bi-search"></i>
                 </button>
@@ -62,7 +64,7 @@
                 <a href="${pageContext.request.contextPath}/perfil" class="btn btn-sm btn-outline-light me-2" title="Ver perfil">
                     <i class="bi bi-person-circle"></i>
                 </a>
-   
+
                 <a href="logout.jsp" class="btn btn-sm btn-outline-light" title="Cerrar sesión">
                     <i class="bi bi-box-arrow-right"></i>
                 </a>
@@ -74,7 +76,6 @@
                     <i class="bi bi-person-plus"></i>
                 </a>
             <% } %>
-
         </div>
     </div>
 </nav>

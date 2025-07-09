@@ -2,15 +2,11 @@ package controlador;
 
 import modelo.DAO.UsuarioDAO;
 import modelo.DTO.Usuario;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -18,6 +14,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         String correo = request.getParameter("correo");
         String clave = request.getParameter("clave");

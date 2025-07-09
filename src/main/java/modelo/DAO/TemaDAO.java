@@ -53,8 +53,6 @@ public class TemaDAO {
     return lista;
 }
 
-
-    
     public Tema obtenerTemaPorId(int id) throws SQLException, ClassNotFoundException {
     String sql = "SELECT t.id, t.titulo, t.contenido, t.fecha_publicacion, t.id_usuario, u.usuario AS nombreUsuario " +
                  "FROM temas t INNER JOIN usuarios u ON t.id_usuario = u.id " +
@@ -143,8 +141,49 @@ public class TemaDAO {
         ps.executeUpdate();
     }
 }
+    
+    
+    public List<Tema> buscarTemas(String busqueda) throws SQLException, ClassNotFoundException {
+    List<Tema> lista = new ArrayList<>();
+    String sql = "SELECT t.id, t.titulo, t.contenido, t.fecha_publicacion, t.id_usuario, u.usuario AS nombreUsuario, " +
+                 "       (SELECT COUNT(*) FROM respuestas r WHERE r.id_tema = t.id) AS numRespuestas, " +
+                 "       t.vistas AS numVistas " +
+                 "FROM temas t " +
+                 "INNER JOIN usuarios u ON t.id_usuario = u.id " +
+                 "WHERE t.titulo LIKE ? OR t.contenido LIKE ? " +
+                 "ORDER BY t.fecha_publicacion DESC";
+
+    try (Connection con = Conexionbd.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        String filtro = "%" + busqueda + "%";
+        ps.setString(1, filtro);
+        ps.setString(2, filtro);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Tema tema = new Tema();
+                tema.setId(rs.getInt("id"));
+                tema.setTitulo(rs.getString("titulo"));
+                tema.setContenido(rs.getString("contenido"));
+                tema.setFechaPublicacion(rs.getTimestamp("fecha_publicacion"));
+                tema.setIdUsuario(rs.getInt("id_usuario"));
+                tema.setNombreUsuario(rs.getString("nombreUsuario"));
+                tema.setNumRespuestas(rs.getInt("numRespuestas"));
+                tema.setNumVistas(rs.getInt("numVistas"));
+                lista.add(tema);
+            }
+        }
+    }
+
+    return lista;
+}
 
     
+    
+              
+
+
 
 
 

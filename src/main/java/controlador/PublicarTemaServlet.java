@@ -15,6 +15,7 @@ public class PublicarTemaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         HttpSession sesion = request.getSession();
         Usuario usuario = (Usuario) sesion.getAttribute("usuarioLogueado");
